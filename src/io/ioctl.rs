@@ -6,6 +6,15 @@
 use crate::{backend, io};
 use backend::fd::AsFd;
 
+/// control device
+#[must_use] pub fn ioctl<Fd: AsFd, T>(fd: Fd, request: u32, argument: &T) -> io::Result<()> {
+    backend::io::syscalls::ioctl(fd.as_fd(), request, argument)
+}
+/// control device
+#[must_use] pub fn ioctl_mut<Fd: AsFd, T>(fd: Fd, request: u32, argument: &mut T) -> io::Result<()> {
+    backend::io::syscalls::ioctl(fd.as_fd(), request, argument)
+}
+
 /// `ioctl(fd, TIOCEXCL)`—Enables exclusive mode on a terminal.
 ///
 /// # References

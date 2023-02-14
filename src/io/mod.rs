@@ -36,6 +36,7 @@ pub use eventfd::{eventfd, EventfdFlags};
 pub use fcntl::fcntl_dupfd_cloexec;
 #[cfg(not(windows))]
 pub use fcntl::{fcntl_getfd, fcntl_setfd, FdFlags};
+pub use ioctl::{ioctl, ioctl_mut};
 #[cfg(any(target_os = "ios", target_os = "macos"))]
 pub use ioctl::ioctl_fioclex;
 pub use ioctl::ioctl_fionbio;

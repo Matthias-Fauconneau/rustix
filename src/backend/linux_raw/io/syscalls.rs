@@ -303,6 +303,14 @@ pub(crate) fn eventfd(initval: u32, flags: EventfdFlags) -> io::Result<OwnedFd> 
 }
 
 #[inline]
+pub(crate) fn ioctl<T>(fd: BorrowedFd<'_>, request: u32, argument: &T) -> io::Result<()> {
+    unsafe {
+        ret(syscall!(__NR_ioctl, fd, c_uint(request), by_ref(argument)))?;
+        Ok(())
+    }
+}
+
+#[inline]
 pub(crate) fn ioctl_fionread(fd: BorrowedFd<'_>) -> io::Result<u64> {
     unsafe {
         let mut result = MaybeUninit::<c::c_int>::uninit();
