@@ -132,7 +132,7 @@ libc-extra-traits = ["libc?/extra_traits"]
 event = []
 
 # Enable `rustix::fs::*`.
-fs = []
+fs = ['mount']
 
 # Enable `rustix::io_uring::*` (on platforms that support it).
 io_uring = ["event", "fs", "net", "linux-raw-sys/io_uring"]
